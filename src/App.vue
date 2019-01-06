@@ -1,11 +1,13 @@
 <template>
   <div class="container">
+    <NewQuote @quoteAdded="newQuote"></NewQuote>
     <QuoteGrid :quotes="quotes"></QuoteGrid>
   </div>
 </template>
 
 <script>
   import QuoteGrid from './components/QuoteGrid.vue';
+  import NewQuote from './components/NewQuote.vue';
 
   export default {
     data: () => {
@@ -14,8 +16,14 @@
         maxQuotes: 10
       }
     },
+    methods: {
+      newQuote(quote) {
+        this.quotes.unshift(quote);
+      }
+    },
     components: {
-      QuoteGrid
+      QuoteGrid,
+      NewQuote
     }
   }
 </script>
